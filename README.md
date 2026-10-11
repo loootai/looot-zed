@@ -14,7 +14,7 @@ claude mcp add --transport http looot https://api.looot.ai/mcp
 
 See also: [awesome-looot-use-cases](https://github.com/loootai/awesome-looot-use-cases) (copy-paste recipes) and [awesome-gtm](https://github.com/loootai/awesome-gtm) (open-source GTM tools).
 
-Zed supports remote MCP servers with OAuth natively, so looot needs no extension. Zed's publishing docs also say MCP server extensions are heading toward deprecation in favour of a registry, and that submissions must be tested by hand at the submitted commit. We did not submit one.
+Zed supports remote MCP servers with OAuth natively, so looot needs no extension. Zed's [MCP extensions page](https://zed.dev/docs/extensions/mcp-extensions) says the project plans to deprecate MCP server extensions in favor of the official MCP registry ([tracking issue](https://github.com/zed-industries/zed/issues/59351)). looot is already in that registry as `ai.looot/looot`. The [extensions repo AI policy](https://github.com/zed-industries/extensions/blob/main/AI_POLICY.md) also rules out agent-authored submissions, so there is no store extension.
 
 ## Setup
 
@@ -31,5 +31,18 @@ Settings | AI | MCP Servers | Add Server | Add Remote Server, or edit settings.j
 ```
 
 With no Authorization header, Zed starts the standard MCP OAuth flow and opens a browser window to sign in to looot.
+
+To use an agent token instead, add a header. Keep the token out of shared settings files.
+
+```json
+{
+  "context_servers": {
+    "looot": {
+      "url": "https://api.looot.ai/mcp",
+      "headers": { "Authorization": "Bearer YOUR_LOOOT_TOKEN" }
+    }
+  }
+}
+```
 
 [looot.ai](https://looot.ai) | [Docs](https://docs.looot.ai) | [Support](https://looot.ai/contact)
